@@ -1,3 +1,18 @@
+/*
+===============================================================================
+Ranking Analysis
+===============================================================================
+Purpose:
+    - To rank items (e.g., products, customers) based on performance or other metrics.
+    - To identify top performers or laggards.
+
+SQL Functions Used:
+    - Window Ranking Functions: RANK(), DENSE_RANK(), ROW_NUMBER(), TOP
+    - Clauses: GROUP BY, ORDER BY
+===============================================================================
+*/
+
+
 --Which 5 Products generate the highest revenue
 SELECT TOP 5 
 dp.product_name,SUM(f.sales_amount) AS Total_Revenue
@@ -6,19 +21,20 @@ JOIN gold.fact_sales f
 ON dp.product_key = f.product_key
 GROUP BY dp.product_name
 ORDER BY Total_Revenue DESC
--- by using window fuction
-SELECT *
-FROM
-      ( SELECT
-		dp.product_name,
-		SUM(f.sales_amount) AS Total_Revenue,
-		ROW_NUMBER() OVER (ORDER BY SUM(f.sales_amount) DESC) AS rank_products
-		FROM gold.dim_products dp
-		JOIN gold.fact_sales f
-		ON dp.product_key = f.product_key
-		GROUP BY dp.product_name
-	  )t
-WHERE rank_products <=5
+
+	-- by using window fuction
+	SELECT *
+	FROM
+		  ( SELECT
+			dp.product_name,
+			SUM(f.sales_amount) AS Total_Revenue,
+			ROW_NUMBER() OVER (ORDER BY SUM(f.sales_amount) DESC) AS rank_products
+			FROM gold.dim_products dp
+			JOIN gold.fact_sales f
+			ON dp.product_key = f.product_key
+			GROUP BY dp.product_name
+		  )t
+	WHERE rank_products <=5
 
 
 --What are the 5 worst performing products in terms of sales?

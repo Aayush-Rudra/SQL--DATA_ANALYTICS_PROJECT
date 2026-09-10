@@ -1,6 +1,16 @@
+
 /*
-In this we explore how many tables are there, relations etc
-In a way understanding the database
+===============================================================================
+Dimensions Exploration
+===============================================================================
+Purpose:
+    - To explore the structure of dimension tables.
+    - In a way understanding the database
+	
+SQL Functions Used:
+    - DISTINCT
+    - ORDER BY
+===============================================================================
 */
 
 
