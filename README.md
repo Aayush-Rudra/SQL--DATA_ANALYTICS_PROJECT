@@ -145,7 +145,7 @@ Common aggregations include:
 
 Understand the overall structure of the database, including tables, columns, relationships, data types, and the available data.
 
-![Database_exploration.JPG](Docs/Database_exploration.png)
+![Database_exploration.JPG](Docs/Database_Exploration.png)
 
 #### 2. Dimensions Exploration
 
